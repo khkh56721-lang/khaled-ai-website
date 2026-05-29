@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background-color: #161616;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74,222,128,0.10), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 30%, rgba(74,222,128,0.04), transparent 70%),
+    radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: auto, auto, 36px 36px;
+  background-attachment: fixed, fixed, fixed;
+  color: #F5F5F5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(74, 222, 128, 0.35);
+  color: #fff;
+}
+
+.container-tight {
+  @apply mx-auto w-full max-w-6xl px-6;
+}
+
+.heading-xl {
+  @apply text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05];
+}
+
+.heading-lg {
+  @apply text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08];
+}
+
+.heading-md {
+  @apply text-3xl md:text-4xl font-extrabold tracking-tight;
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.2em] text-accent uppercase;
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-bold text-bg transition-all hover:bg-accent-hover hover:shadow-[0_0_30px_rgba(74,222,128,0.40)];
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-3 text-sm font-semibold text-white transition-all hover:border-accent hover:bg-card-hover;
+}
+
+.card-surface {
+  @apply rounded-2xl border border-border bg-card transition-colors hover:border-accent/40;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
