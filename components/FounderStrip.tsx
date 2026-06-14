@@ -47,7 +47,7 @@ export default function FounderStrip() {
               </div>
               <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-border bg-bg/85 px-5 py-4 text-sm backdrop-blur">
                 <p className="text-base font-extrabold text-white">Khaled Akhyarhoum</p>
-                <p className="mt-1 text-xs text-muted">AI Automation Engineer · La Rochelle → Global</p>
+                <p className="mt-1 text-xs text-muted">AI Automation Engineer · Building Globally</p>
               </div>
             </div>
           </div>
