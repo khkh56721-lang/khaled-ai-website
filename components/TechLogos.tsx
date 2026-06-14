@@ -28,12 +28,6 @@ const SlackSvg = (
   </svg>
 );
 
-const VSCodeSvg = (
-  <svg viewBox="0 0 24 24" fill="#007ACC" xmlns="http://www.w3.org/2000/svg">
-    <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zM17.5 17.448L10.323 12 17.5 6.552v10.896z" />
-  </svg>
-);
-
 /* ---------- Tool list ---------- */
 
 export type ToolEntry = {
@@ -44,27 +38,25 @@ export type ToolEntry = {
   fallback?: string;   // last-resort monogram letter.
 };
 
+// Curated to the AI + automation + voice + CRM tools we actually ship with.
+// Dev/infra logos (IDEs, hosting, DBs) removed on purpose — clients care about
+// the AI stack, not the build tooling.
 export const TOOLS: ToolEntry[] = [
-  { name: 'Make',         slug: 'make' },                          // purple
-  { name: 'n8n',          slug: 'n8n' },                           // pink
-  { name: 'Zapier',       slug: 'zapier' },                        // orange
-  { name: 'Anthropic',    slug: 'anthropic' },                     // orange
-  { name: 'OpenAI',       node: OpenAISvg },                       // inline (CDN removed)
-  { name: 'ElevenLabs',   slug: 'elevenlabs',  color: 'ffffff' },
-  { name: 'Vapi',         fallback: 'V' },
-  { name: 'LiveKit',      slug: 'livekit',     color: 'ffffff' },
-  { name: 'HubSpot',      slug: 'hubspot' },                       // orange
-  { name: 'Slack',        node: SlackSvg },                        // inline multicolor (CDN removed)
-  { name: 'Notion',       slug: 'notion',      color: 'ffffff' },
-  { name: 'Airtable',     slug: 'airtable' },                      // multicolor
-  { name: 'Instantly',    fallback: 'I' },
-  { name: 'Cursor',       slug: 'cursor',      color: 'ffffff' },
-  { name: 'VS Code',      node: VSCodeSvg },                       // inline (CDN removed)
-  { name: 'Cloudflare',   slug: 'cloudflare' },                    // orange
-  { name: 'Supabase',     slug: 'supabase' },                      // green
-  { name: 'Gemini',       slug: 'googlegemini' },                  // blue
-  { name: 'Perplexity',   slug: 'perplexity' },                    // teal
-  { name: 'LangChain',    slug: 'langchain',   color: 'ffffff' },
+  { name: 'Make',          slug: 'make' },                         // purple
+  { name: 'n8n',           slug: 'n8n' },                          // pink
+  { name: 'Zapier',        slug: 'zapier' },                       // orange
+  { name: 'Claude Code',   slug: 'anthropic' },                    // orange
+  { name: 'OpenAI',        node: OpenAISvg },                      // inline (CDN removed)
+  { name: 'Gemini',        slug: 'googlegemini' },                 // blue
+  { name: 'Perplexity',    slug: 'perplexity' },                   // teal
+  { name: 'Vapi',          fallback: 'V' },                        // voice AI
+  { name: 'ElevenLabs',    slug: 'elevenlabs',  color: 'ffffff' }, // voice AI
+  { name: 'LiveKit',       slug: 'livekit',     color: 'ffffff' }, // voice infra
+  { name: 'HubSpot',       slug: 'hubspot' },                      // CRM
+  { name: 'GoHighLevel',   fallback: 'GHL' },                      // CRM (no CDN logo)
+  { name: 'Slack',         node: SlackSvg },                       // inline multicolor (CDN removed)
+  { name: 'Airtable',      slug: 'airtable' },                     // multicolor
+  { name: 'Instantly',     fallback: 'I' },                        // outreach
 ];
 
 type LogoProps = { tool: ToolEntry; className?: string };
@@ -76,7 +68,7 @@ export function ToolLogo({ tool, className = 'h-10 w-10' }: LogoProps) {
   if (!tool.slug) {
     return (
       <span
-        className={`${className} grid place-items-center rounded-lg border border-border-soft bg-card text-base font-extrabold text-silver`}
+        className={`${className} grid place-items-center rounded-xl border border-border-soft bg-card text-xl font-extrabold text-silver`}
         aria-label={tool.name}
       >
         {tool.fallback}

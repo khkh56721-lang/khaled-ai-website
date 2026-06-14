@@ -29,10 +29,10 @@ const rows = [
 export default function Comparison() {
   return (
     <section className="container-tight py-20 md:py-28">
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="reveal-on-scroll mx-auto max-w-3xl text-center">
         <p className="eyebrow mx-auto justify-center">The difference</p>
         <h2 className="heading-lg mt-3">
-          Most AI agencies <span className="italic text-accent">look the same.</span>
+          Most AI agencies <span className="text-gradient">look the same.</span>
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base text-muted-strong">
           Same templates, same promises, same disappearing act. Here&apos;s how Khaled AI works
@@ -40,7 +40,7 @@ export default function Comparison() {
         </p>
       </div>
 
-      <div className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur-sm">
+      <div className="reveal-on-scroll mx-auto mt-14 max-w-5xl overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur-sm">
         <div className="grid grid-cols-1 divide-y divide-border md:grid-cols-[160px_1fr_1fr] md:divide-x md:divide-y-0">
           <div className="hidden bg-bg-soft px-6 py-4 text-xs font-mono uppercase tracking-[0.2em] text-muted md:block" />
           <div className="hidden bg-bg-soft px-6 py-4 text-xs font-mono uppercase tracking-[0.2em] text-danger md:block">

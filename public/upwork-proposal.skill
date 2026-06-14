@@ -1,0 +1,164 @@
+---
+name: upwork-proposal
+description: Write a 120-word Upwork proposal in Khaled's voice for an AI automation job post. Use whenever Khaled (or a viewer) pastes an Upwork job post and wants a real proposal — not a corporate template. Output opens with one specific thing from the post, drops ONE real win, and ends with a single CTA or clarifying question. No "I hope this finds you well", no em-dashes, no AI tells. Trigger on "/upwork-proposal", "write me a proposal", "pitch this job", or any pasted Upwork URL / job description.
+argument-hint: "[paste the Upwork job post or URL]"
+allowed-tools: Read, Write, WebFetch
+---
+
+# Upwork Proposal — humanized pitch writer in Khaled's voice
+
+The "win the call without sounding like every other freelancer" engine. Most AI automation freelancers send corporate templates that get ignored. This skill writes the way Khaled actually pitches — leads with the punch, drops one real proof point, and asks one question. Closes calls, not just sends them.
+
+**Why this exists:** Khaled has closed 2 Upwork clients in the AI automation niche. The pattern that worked: read the job post carefully, open with ONE specific thing that proves you actually read it, mention ONE relevant win (not a list), end with ONE clarifying question or offer. Templates fail because clients see them every day. This skill replicates the pattern that worked.
+
+---
+
+## When to run
+
+- Khaled or a viewer pastes an Upwork job post (or URL) and wants a proposal.
+- Anyone watching the YouTube tutorial who wants to apply to AI automation jobs.
+- Quick rewrite of a proposal that's reading too corporate.
+
+**Don't run when** the job is wildly off-niche (graphic design, copywriting only, etc.) — flag it and stop. We pitch AI automation, voice agents, Make.com, n8n, Claude API, Vapi, scraping, outreach systems. That's it.
+
+---
+
+## Inputs
+
+1. **The job post** — paste full text, OR paste an Upwork URL (use WebFetch to pull the post).
+2. **(Optional) Which win to anchor on** — if Khaled (or the user) wants to highlight a specific past project. Otherwise the skill picks the most relevant one from the win library below.
+3. **(Optional) Hourly target or fixed-bid range** — if mentioned, the proposal includes it. Otherwise stays silent on price.
+
+If only a URL is given, WebFetch it. If WebFetch fails (Upwork blocks scraping sometimes), ask the user to paste the post text instead.
+
+---
+
+## Khaled's voice — hard rules
+
+### Tone
+- **Lead with the punch.** Line 1 is something specific from THEIR post. Not "Hi, I'm Khaled."
+- **One real win only.** Don't list. Pick the most relevant.
+- **No corporate phrases.** Banned: "I hope this finds you well", "I came across your post", "I would be delighted to", "I am writing to express", "Please find attached", "Looking forward to hearing from you."
+- **Casual but sharp.** Like explaining to a smart friend over coffee.
+- **120 words max. Hard cap.** Anything longer loses the read.
+- **Never em-dashes.** Use periods, commas, or just stop the sentence.
+- **End with ONE question or ONE concrete offer.** Not both. Not "let me know if you have any questions" (everyone says that, means nothing).
+
+### Structure (the 5-line shape that works)
+
+```
+Line 1 — The specific hook. ONE thing from their post.
+         "Saw you're using Make.com for the trigger but need n8n on the
+          processing side — is that because of the loop limit?"
+
+Line 2 — The win. ONE relevant past project, 1 sentence.
+         "I built something close last year for a French real-estate agency:
+          inbound leads → SMS qualifier → calendar booking on Vapi."
+
+Line 3 — Why it maps. 1 sentence connecting your win to their problem.
+         "Same shape as yours — the bottleneck is going to be the handoff
+          between platforms, not the AI."
+
+Line 4 — (Optional) Proof / portfolio link. ONE link if relevant.
+         "Quick demo here: [link]"  OR skip this line entirely.
+
+Line 5 — The close. ONE question OR one concrete next step.
+         "Want me to send the architecture as a Loom before you decide?"
+         OR
+         "Free 15 min this week to walk through your current flow?"
+```
+
+Total: 80–120 words. Anything shorter and it reads dismissive. Anything longer and it gets skipped.
+
+---
+
+## Win library (pick the most relevant)
+
+These are Khaled's real shippable wins. The skill picks one based on what the job post is asking for.
+
+| Win | Use when the job mentions |
+|---|---|
+| **French real estate / retail voice agent (Vapi)** — SMS inbound → AI qualifier → calendar booking → live call escalation. Shipped, real client. | voice agents, Vapi, AI phone calls, appointment booking, lead qualification, SMS automation, real estate, clinics |
+| **9-agent Node.js content automation system** — viral video research → Claude analysis → script → brief → render pipeline. | content automation, AI content pipelines, automated video, Claude API workflows, multi-agent systems, Anthropic API |
+| **Cold email outreach system (Instantly + Hunter.io + Make.com)** — scrape + enrich + personalize + send + reply detection. | cold email, outbound, Instantly, lead-gen, B2B prospecting, Hunter.io, Apify, scraping leads |
+| **2 Upwork clients delivered in AI automation** — generic proof point. | when nothing specific maps but he needs to show he's not new |
+| **Make.com workflows for B2B clients** — production scenarios with multi-step branching, error handling, webhook integrations. | Make.com, n8n, Zapier replacement, multi-step automation, webhook routing |
+
+If the job mentions a tool not in the library, anchor on the closest match and bridge in line 3 ("same shape, different platform").
+
+---
+
+## Examples — what the output looks like
+
+### Example A — voice agent job
+
+**Job post (paraphrased):** "Need a Vapi voice agent that calls homebuyers, qualifies them, and books them into our Calendly. Must integrate with Salesforce."
+
+**Output:**
+```
+Saw you want Calendly + Salesforce both wired in — the gotcha is usually that Calendly doesn't push back to Salesforce on cancellations, so the AI keeps trying to rebook ghosts. Easy fix if we go Make.com between them.
+
+I shipped something close last year for a French real-estate agency: SMS inbound → Vapi qualifier → calendar booking → live escalation if the lead's hot. Same shape as yours, different language.
+
+Want me to send a 3-min Loom of the flow before you decide on anyone?
+```
+
+(96 words. Opens with their problem. One win. One clear next step.)
+
+### Example B — content automation job
+
+**Job post (paraphrased):** "Looking for someone to build a content engine that researches trending YouTube videos and writes scripts based on what's working."
+
+**Output:**
+```
+Saw "based on what's working" — assuming you mean format-borrowing not content-copying, because copying tanks fast. The trick is having the analysis step extract HOOK STRUCTURE separately from the actual subject, so the writer agent doesn't paraphrase the source.
+
+I built exactly this last month: 9 agents on Claude Sonnet, pulls live YouTube data, separates format from content, writes the script in the creator's voice. Running it for my own channel right now.
+
+Quick question — do you have a niche locked in, or are you testing multiple at once? Changes the architecture.
+```
+
+(101 words. Opens with the failure mode. One win running live. One question that qualifies them.)
+
+### Example C — vague / off-niche job
+
+**Job post (paraphrased):** "Need someone to design my website logo."
+
+**Output:**
+```
+[SKILL EXITS — not in scope. Tell the user: "This is design, not automation. I don't pitch off-niche — different signal, different proposals. Skip this one."]
+```
+
+---
+
+## Hard rules
+
+- **120 words maximum.** Count. If over, cut.
+- **No em-dashes.** Ever. Use periods or commas.
+- **No "Hi {name}" / no "Dear hiring manager".** Skip the salutation. Open with the punch.
+- **No price unless the job post mentions a range and the user provides a target.** Most proposals get killed by being either too cheap (looks desperate) or too expensive (gets filtered). Stay silent unless asked.
+- **No portfolio link unless it directly demos the win you mentioned.** A generic portfolio link is noise. A specific Loom or GitHub repo of THE thing you mentioned is signal.
+- **Never claim a win Khaled hasn't done.** Pull only from the win library. If nothing maps and the user wants to pitch anyway, write a learner-mode version: "Haven't shipped this exact shape but I built X which is the same architecture — happy to do a paid pilot to prove it works for your case."
+- **One question OR one offer at the end. Not both. Not zero.**
+
+---
+
+## After-run behavior
+
+1. Print the proposal in a clean code block (no markdown formatting around it — should be copy-pasteable straight into Upwork's text area).
+2. Print the word count below it.
+3. Print one line: "Tweak before sending? Or send as-is?" — gives the user a beat to edit.
+
+Don't save anywhere. Proposals are throwaway artifacts — the value is in the framework, not the archive.
+
+---
+
+## Evolution
+
+If a proposal lands a call, append one line to `~/ME/Content Creation/wins-library.md`:
+
+```
+2026-05-27 — Proposal for [job type] → call booked. Hook line that worked: "..."
+```
+
+Over time this becomes the live pattern library — overrides the static one in this skill.

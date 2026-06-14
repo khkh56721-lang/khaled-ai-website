@@ -2,9 +2,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const stack = [
-  'Make.com', 'n8n', 'Vapi', 'Claude API', 'OpenAI',
+  'Make.com', 'n8n', 'Vapi', 'Claude Code', 'OpenAI', 'Gemini',
   'ElevenLabs', 'LiveKit', 'Instantly', 'HubSpot',
-  'Slack', 'Airtable', 'Node.js', 'Python', 'Next.js',
+  'GoHighLevel', 'Slack', 'Airtable',
 ];
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
         <div className="relative mx-auto w-full max-w-7xl px-6 text-center md:px-10">
           <p className="eyebrow mx-auto justify-center">About</p>
           <h1 className="heading-xl mt-5 md:text-[6rem] md:leading-[1.02]">
-            Real builds. <span className="text-accent italic">Real systems.</span>
+            Real builds. <span className="text-gradient">Real systems.</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-lg text-muted-strong md:text-xl">
             The story behind Khaled AI — who&apos;s building, why we ship the way we do,
@@ -54,7 +54,7 @@ export default function AboutPage() {
               </div>
               <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-border bg-bg/85 px-5 py-4 text-sm backdrop-blur">
                 <p className="text-base font-extrabold text-white">Khaled Akhyarhoum</p>
-                <p className="mt-1 text-xs text-muted">AI Automation Engineer · La Rochelle → Global</p>
+                <p className="mt-1 text-xs text-muted">AI Automation Engineer · Building Globally</p>
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function AboutPage() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr] md:gap-16 lg:gap-24">
           <article className="space-y-7 text-lg leading-relaxed text-muted-strong md:text-xl md:leading-[1.7]">
             <p className="text-2xl font-extrabold leading-tight text-white md:text-3xl">
-              I&apos;m Khaled — 20, Mauritanian, building from La Rochelle, France.
+              I&apos;m Khaled — 20, Mauritanian, building for clients worldwide.
             </p>
             <p>
               I&apos;m finishing my second year of mechatronics engineering. Before any of this
@@ -87,7 +87,8 @@ export default function AboutPage() {
               automation, shipped end-to-end.
             </p>
             <p className="text-xl font-extrabold text-white md:text-2xl">
-              No guru talk. No income screenshots. Real systems, real numbers, real builds.
+              Everything here is something I&apos;ve built and shipped for a real business. I
+              share exactly how it works, so you can build it too.
             </p>
           </article>
 
@@ -115,7 +116,7 @@ export default function AboutPage() {
               </p>
               {/* TODO: replace with real YouTube channel URL once created */}
               <a
-                href="https://youtube.com/@khaled-ai"
+                href="https://www.youtube.com/@khaledakhyarhoum"
                 target="_blank"
                 rel="noreferrer"
                 className="btn-primary mt-5 w-full justify-center"

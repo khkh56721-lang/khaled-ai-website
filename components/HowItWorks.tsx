@@ -70,10 +70,10 @@ export default function HowItWorks() {
       />
 
       <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="reveal-on-scroll mx-auto max-w-3xl text-center">
           <p className="eyebrow mx-auto justify-center">How it works</p>
           <h2 className="heading-lg mt-4">
-            From call to <span className="text-accent">live system.</span>
+            From call to <span className="text-gradient">live system.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-strong md:text-lg">
             Three phases. Clear deliverables at each step. No vague hourly retainers.

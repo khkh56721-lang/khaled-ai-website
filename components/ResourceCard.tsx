@@ -3,7 +3,7 @@
 type Props = {
   title: string;
   description: string;
-  type: 'Template' | 'Guide' | 'Tool';
+  type: 'Template' | 'Guide' | 'Tool' | 'Skill';
   onClaim: (title: string) => void;
 };
 
@@ -11,6 +11,7 @@ const typeColor: Record<Props['type'], string> = {
   Template: 'text-accent',
   Guide: 'text-success',
   Tool: 'text-muted-strong',
+  Skill: 'text-accent',
 };
 
 export default function ResourceCard({ title, description, type, onClaim }: Props) {

@@ -1,4 +1,5 @@
 import ContactForm from '@/components/ContactForm';
+import CalInline from '@/components/CalInline';
 
 export default function ContactPage() {
   return (
@@ -6,44 +7,34 @@ export default function ContactPage() {
       <section className="container-tight pb-10 pt-12 md:pt-20">
         <p className="eyebrow">Contact</p>
         <h1 className="heading-xl mt-4 max-w-3xl">
-          Let&apos;s build <span className="text-accent">something.</span>
+          Let&apos;s <span className="text-gradient">talk.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-strong">
-          Two ways to start. Pick the one that fits.
+          Two ways in: grab a free 30-minute roadmap call on the calendar below, or send a
+          message and I&apos;ll reply within 24 hours.
         </p>
       </section>
 
-      <section className="container-tight grid gap-6 pb-12 md:grid-cols-2">
-        <div className="card-surface flex flex-col p-7 md:p-9">
-          <span className="self-start rounded-full border border-accent/40 bg-accent-soft px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-accent">
-            Option 01
+      {/* Book a call — inline Cal.com calendar */}
+      <section className="container-tight pb-14">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
           </span>
-          <h2 className="mt-5 text-2xl font-extrabold">Book a discovery call</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-strong">
-            Free 30 minutes. We map your current workflow, identify what to automate, and see if there&apos;s a real fit. No-pressure scope conversation.
-          </p>
-          <ul className="mt-5 space-y-2 text-sm text-white">
-            <li className="flex items-center gap-2"><span className="h-1 w-1 rounded-full bg-accent" /> 30 minutes</li>
-            <li className="flex items-center gap-2"><span className="h-1 w-1 rounded-full bg-accent" /> No-pressure scope</li>
-            <li className="flex items-center gap-2"><span className="h-1 w-1 rounded-full bg-accent" /> Proposal within 48 hours</li>
-          </ul>
-          {/* TODO: replace href with real Calendly URL once booking link is live */}
-          <a
-            href="#"
-            aria-disabled
-            className="btn-primary mt-auto w-full justify-center"
-          >
-            Book a call
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+          <h2 className="text-xl font-extrabold text-white">Book a free roadmap call</h2>
+          <span className="text-sm text-muted">· 30 min · no pitch</span>
         </div>
+        <CalInline />
+      </section>
 
-        <div className="flex flex-col gap-3">
-          <span className="self-start rounded-full border border-border bg-card px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-muted">
-            Option 02 — Send a message
-          </span>
+      {/* Message form — the "prefer to write" path */}
+      <section className="container-tight pb-12">
+        <div className="mx-auto max-w-xl">
+          <div className="mb-6 text-center">
+            <p className="eyebrow justify-center">Prefer to write?</p>
+            <h2 className="mt-3 text-2xl font-extrabold">Send a message instead</h2>
+          </div>
           <ContactForm />
         </div>
       </section>

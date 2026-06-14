@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     q: 'Do you work with international clients?',
-    a: 'Yes — exclusively. I work with English-speaking B2B clients globally. Payment via Wise. I&apos;m based in France but operate worldwide.',
+    a: 'Yes — exclusively. I work with English-speaking B2B clients globally. Payment via Wise. I operate fully remote, worldwide.',
   },
   {
     q: "What's your pricing?",
@@ -24,10 +24,10 @@ const faqs = [
 export default function FAQ() {
   return (
     <section className="container-tight py-20 md:py-28">
-      <div className="max-w-2xl">
+      <div className="reveal-on-scroll max-w-2xl">
         <p className="eyebrow">FAQ</p>
         <h2 className="heading-md mt-3">
-          Common questions, <span className="text-accent">straight answers.</span>
+          Common questions, <span className="text-gradient">straight answers.</span>
         </h2>
       </div>
       <div className="mt-12 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card">

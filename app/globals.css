@@ -7,6 +7,7 @@
 }
 
 html, body {
+  overflow-x: clip; /* contain wide decorative glows without breaking sticky positioning */
   background-color: #161616;
   background-image:
     radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74,222,128,0.10), transparent 60%),
@@ -28,16 +29,29 @@ html, body {
   @apply mx-auto w-full max-w-6xl px-6;
 }
 
+/* Big headlines use the condensed display face, uppercase, tight leading — the
+   premium-presence lever. Anton is a single heavy weight, so we use font-normal
+   (font-extrabold would synthesize and smear it). Sizes bumped because condensed
+   caps read smaller. Body copy and small headings stay Inter. */
 .heading-xl {
-  @apply text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05];
+  @apply font-display uppercase tracking-tight leading-[0.92];
+  font-size: clamp(2.6rem, 11vw, 7rem); /* fluid — never clips on mobile */
 }
 
 .heading-lg {
-  @apply text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08];
+  @apply font-display uppercase tracking-tight leading-[0.94];
+  font-size: clamp(2.2rem, 8.5vw, 4.75rem);
 }
 
 .heading-md {
-  @apply text-3xl md:text-4xl font-extrabold tracking-tight;
+  @apply font-display uppercase text-4xl md:text-5xl tracking-tight leading-[0.96];
+}
+
+/* Mint gradient for emphasized headline words + stat numbers. Replaces the old
+   italic-accent emphasis (Anton has no italic). Our answer to blacksmith's
+   purple gradient — in Khaled's green. */
+.text-gradient {
+  @apply bg-gradient-to-r from-accent to-[#34D399] bg-clip-text text-transparent;
 }
 
 .eyebrow {
@@ -52,7 +66,7 @@ html, body {
 }
 
 .btn-primary {
-  @apply inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-bold text-bg transition-all hover:bg-accent-hover hover:shadow-[0_0_30px_rgba(74,222,128,0.40)];
+  @apply inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-[#34D399] px-5 py-3 text-sm font-bold text-bg transition-all hover:shadow-[0_0_34px_rgba(74,222,128,0.50)] hover:brightness-[1.08];
 }
 
 .btn-secondary {
@@ -65,3 +79,91 @@ html, body {
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+/* Cal.com inline calendar: only reserve loading height WHILE empty. Once Cal
+   injects its iframe the box is no longer :empty, so it shrinks to the exact
+   calendar height — no dead space underneath. */
+#cal-inline-booking:empty {
+  display: grid;
+  place-items: center;
+  min-height: 520px;
+}
+#cal-inline-booking:empty::after {
+  content: 'Loading the calendar…';
+  font-size: 0.8rem;
+  color: #8A8A8A;
+}
+
+/* Intro reveal — staggered fade-up on first paint. Apply `.reveal` + a
+   `.reveal-N` delay class. fill-mode:both keeps the element hidden during
+   the delay so nothing flashes in before its turn. */
+.reveal {
+  opacity: 0;
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-1 { animation-delay: 0.05s; }
+.reveal-2 { animation-delay: 0.15s; }
+.reveal-3 { animation-delay: 0.28s; }
+.reveal-4 { animation-delay: 0.42s; }
+.reveal-5 { animation-delay: 0.56s; }
+
+@keyframes reveal-up {
+  0% { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* Slow-drifting aurora glow behind the hero. */
+.aurora {
+  animation: aurora-drift 14s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift {
+  0%   { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.55; }
+  50%  { transform: translateX(-46%) translateY(12px) scale(1.08); opacity: 0.75; }
+  100% { transform: translateX(-54%) translateY(-8px) scale(1.04); opacity: 0.6; }
+}
+
+/* Scroll-triggered reveal — add `.reveal-on-scroll` to any element; the global
+   ScrollReveal observer adds `.is-visible` when it enters the viewport. Stagger
+   siblings with an inline transition-delay. */
+/* Uses the standalone `translate` property (NOT `transform`) so it composes with
+   the cards' transform-based hover-lift instead of fighting it. */
+.reveal-on-scroll {
+  opacity: 0;
+  translate: 0 26px;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              translate 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, translate;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Star rating pop-in — fires when the card's `.reveal-on-scroll` parent becomes
+   visible. Stagger each star with an inline animation-delay. */
+.star-anim { opacity: 0; transform: scale(0.3) rotate(-12deg); }
+.reveal-on-scroll.is-visible .star-anim {
+  animation: star-pop 0.45s cubic-bezier(0.2, 1.5, 0.4, 1) forwards;
+}
+@keyframes star-pop {
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+/* Hover shine sweep for cards that opt in with `.card-shine`. */
+.card-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(74, 222, 128, 0.10) 50%, transparent 70%);
+  translate: -120% 0;
+  transition: translate 0.7s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after { translate: 120% 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .aurora { animation: none; opacity: 1; }
+  .reveal-on-scroll { opacity: 1; translate: none; transition: none; }
+  .star-anim { opacity: 1; transform: none; }
+  .card-shine::after { display: none; }
+}

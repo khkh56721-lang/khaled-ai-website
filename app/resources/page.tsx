@@ -4,30 +4,51 @@ import { useState } from 'react';
 import ResourceCard from '@/components/ResourceCard';
 import LeadModal from '@/components/LeadModal';
 
-const resources = [
+type Resource = {
+  title: string;
+  description: string;
+  type: 'Template' | 'Guide' | 'Tool' | 'Skill';
+  downloadUrl?: string;
+  externalUrl?: string;
+};
+
+const resources: Resource[] = [
+  {
+    title: 'The /upwork-proposal Skill',
+    description:
+      'The exact Claude Code skill I built on camera — it writes a 120-word Upwork proposal in my voice from any job post. Drop it in ~/.claude/skills/ and trigger it with /upwork-proposal. Yours free.',
+    type: 'Skill',
+    downloadUrl: '/upwork-proposal.skill',
+  },
   {
     title: 'Lead Gen Automation Template',
     description:
-      'A ready-to-import Make.com scenario: scrape leads, enrich with Hunter, send personalized emails. Same template I use for client outreach.',
-    type: 'Template' as const,
+      'The exact Make.com lead-gen system I build for clients — capture, enrich, score, and route leads to your CRM and inbox automatically. Full step-by-step build, no fluff.',
+    type: 'Template',
+    externalUrl:
+      'https://humorous-primrose-a0c.notion.site/Lead-Gen-Automation-Template-3747db19689e80ca813bc903a8115b38',
   },
   {
-    title: 'Cold Email Sequence That Got Me Clients',
+    title: 'Cold Email Sequence',
     description:
-      '5-email sequence with hooks, CTAs, and follow-up logic. Plain text, copy-paste into Instantly or Lemlist. Worked on Upwork B2B.',
-    type: 'Template' as const,
+      'My 4-email B2B cold sequence — real copy you can paste into Instantly today, plus why each line works and the deliverability setup that keeps you out of spam.',
+    type: 'Template',
+    externalUrl:
+      'https://humorous-primrose-a0c.notion.site/Cold-Email-Sequence-3747db19689e814bb858e7c10f73b471',
   },
   {
     title: 'Voice Agent Setup Guide',
     description:
-      'Step-by-step PDF — how to ship a Vapi voice agent that books appointments, including prompts, tools setup, and the gotchas.',
-    type: 'Guide' as const,
+      'How I ship Vapi voice agents that book appointments 24/7 — the system prompt, the Make.com handoff, and the gotchas. Same setup I built for real clients.',
+    type: 'Guide',
+    externalUrl:
+      'https://humorous-primrose-a0c.notion.site/Voice-Agent-Setup-Guide-3747db19689e81278720d0368a793193',
   },
   /* TODO: add more resources as they're built. */
 ];
 
 export default function ResourcesPage() {
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<Resource | null>(null);
 
   return (
     <>
@@ -51,7 +72,7 @@ export default function ResourcesPage() {
               title={r.title}
               description={r.description}
               type={r.type}
-              onClaim={setActive}
+              onClaim={() => setActive(r)}
             />
           ))}
         </div>

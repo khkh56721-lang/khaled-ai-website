@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { bookingUrl, calAttrs } from '@/lib/booking';
 
 /*
  * Mobile-only sticky bottom CTA. Appears after the user scrolls past the hero
@@ -48,14 +48,15 @@ export default function MobileStickyCTA() {
           <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
         </span>
         <p className="flex-1 truncate text-sm font-semibold text-white">
-          Free discovery call · 30 min
+          Free AI roadmap · 30 min
         </p>
-        <Link
-          href="/contact/"
+        <a
+          href={bookingUrl}
+          {...calAttrs}
           className="rounded-full bg-accent px-4 py-2 text-xs font-bold text-bg"
         >
           Book →
-        </Link>
+        </a>
         <button
           onClick={handleClose}
           aria-label="Dismiss"

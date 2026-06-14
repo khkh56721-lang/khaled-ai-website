@@ -21,11 +21,11 @@ export default function WhyMe() {
   return (
     <section className="container-tight py-20 md:py-28">
       <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
-        <div>
+        <div className="reveal-on-scroll">
           <p className="eyebrow">Why us</p>
           <h2 className="heading-lg mt-3">
             Built different.<br />
-            <span className="text-accent">Shipped different.</span>
+            <span className="text-gradient">Shipped different.</span>
           </h2>
           <p className="mt-5 text-base text-muted-strong">
             A focused team obsessed with AI automation for B2B. We say no to the wrong fits so we
@@ -34,7 +34,7 @@ export default function WhyMe() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {points.map((p, i) => (
-            <div key={p.title} className="card-surface p-6">
+            <div key={p.title} style={{ transitionDelay: `${i * 80}ms` }} className="reveal-on-scroll card-surface p-6">
               <span className="font-mono text-xs text-accent">0{i + 1}</span>
               <h3 className="mt-3 text-lg font-extrabold">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-strong">{p.desc}</p>

@@ -1,14 +1,26 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Anton } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MobileStickyCTA from '@/components/MobileStickyCTA';
+import FloatingContact from '@/components/FloatingContact';
+import ScrollReveal from '@/components/ScrollReveal';
+import CalProvider from '@/components/CalProvider';
 
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-inter',
+  display: 'swap',
+});
+
+// Heavy condensed display face for big headlines — the "premium presence" lever.
+// Inspired by (not copied from) blacksmith-ind.com, rendered in Khaled's mint brand.
+const anton = Anton({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-display',
   display: 'swap',
 });
 
@@ -34,12 +46,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
+    <html lang="en" className={`${inter.variable} ${anton.variable} dark`}>
       <body className="min-h-screen bg-bg font-sans text-white antialiased">
         <Navbar />
+        <ScrollReveal />
         <main className="pt-24">{children}</main>
         <Footer />
         <MobileStickyCTA />
+        <FloatingContact />
+        <CalProvider />
       </body>
     </html>
   );

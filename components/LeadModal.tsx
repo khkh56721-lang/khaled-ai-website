@@ -5,7 +5,7 @@ import { submitLead } from '@/lib/submitLead';
 
 type Props = {
   open: boolean;
-  resource: string | null;
+  resource: { title: string; downloadUrl?: string; externalUrl?: string } | null;
   onClose: () => void;
 };
 
@@ -38,7 +38,7 @@ export default function LeadModal({ open, resource, onClose }: Props) {
       type: 'resource',
       name: name.trim(),
       email: email.trim(),
-      resource: resource ?? 'unknown',
+      resource: resource?.title ?? 'unknown',
     });
     setStatus(res.ok ? 'success' : 'error');
   };
@@ -59,14 +59,61 @@ export default function LeadModal({ open, resource, onClose }: Props) {
                 <path d="M5 12l5 5L20 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <h3 className="mt-4 text-xl font-extrabold">You&apos;re on the list.</h3>
-            <p className="mt-2 text-sm text-muted">
-              I&apos;ll send <span className="text-white">{resource}</span> straight to{' '}
-              <span className="text-white">{email}</span> in the next few minutes.
-            </p>
-            <button onClick={onClose} className="btn-secondary mt-6 w-full justify-center">
-              Done
-            </button>
+            <h3 className="mt-4 text-xl font-extrabold">You&apos;re in.</h3>
+            {resource?.downloadUrl ? (
+              <>
+                <p className="mt-2 text-sm text-muted">
+                  <span className="text-white">{resource.title}</span> is ready. Tap below to download
+                  it now — I&apos;ll also keep you posted as I build the next ones.
+                </p>
+                <a
+                  href={resource.downloadUrl}
+                  download
+                  onClick={onClose}
+                  className="btn-primary mt-6 w-full justify-center"
+                >
+                  Download it now
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+                <button onClick={onClose} className="btn-secondary mt-3 w-full justify-center">
+                  Done
+                </button>
+              </>
+            ) : resource?.externalUrl ? (
+              <>
+                <p className="mt-2 text-sm text-muted">
+                  <span className="text-white">{resource.title}</span> is ready. Open it below — I&apos;ll
+                  also keep you posted as I build the next ones.
+                </p>
+                <a
+                  href={resource.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="btn-primary mt-6 w-full justify-center"
+                >
+                  Open the guide
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+                <button onClick={onClose} className="btn-secondary mt-3 w-full justify-center">
+                  Done
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="mt-2 text-sm text-muted">
+                  I&apos;ll send <span className="text-white">{resource?.title}</span> straight to{' '}
+                  <span className="text-white">{email}</span> in the next few minutes.
+                </p>
+                <button onClick={onClose} className="btn-secondary mt-6 w-full justify-center">
+                  Done
+                </button>
+              </>
+            )}
           </div>
         ) : (
           <>
@@ -74,7 +121,7 @@ export default function LeadModal({ open, resource, onClose }: Props) {
               <div>
                 <p className="eyebrow">Free resource</p>
                 <h3 className="mt-2 text-xl font-extrabold leading-tight">
-                  {resource ?? 'Get the resource'}
+                  {resource?.title ?? 'Get the resource'}
                 </h3>
               </div>
               <button
@@ -89,7 +136,9 @@ export default function LeadModal({ open, resource, onClose }: Props) {
             </div>
 
             <p className="mt-3 text-sm text-muted">
-              Drop your email — I&apos;ll send it over. No spam, ever.
+              {resource?.downloadUrl || resource?.externalUrl
+                ? 'Drop your email and get instant access. No spam, ever.'
+                : 'Drop your email — I’ll send it over. No spam, ever.'}
             </p>
 
             <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-3">
@@ -112,7 +161,11 @@ export default function LeadModal({ open, resource, onClose }: Props) {
                 disabled={status === 'loading'}
                 className="btn-primary mt-1 w-full justify-center disabled:opacity-60"
               >
-                {status === 'loading' ? 'Sending…' : 'Send Me the Resource'}
+                {status === 'loading'
+                  ? 'Sending…'
+                  : resource?.downloadUrl || resource?.externalUrl
+                    ? 'Get Instant Access'
+                    : 'Send Me the Resource'}
               </button>
               {status === 'error' && (
                 <p className="text-center text-xs text-danger">

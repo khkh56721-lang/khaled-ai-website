@@ -7,7 +7,7 @@ import TechStackScroll from '@/components/TechStackScroll';
 import WhyMe from '@/components/WhyMe';
 import FAQ from '@/components/FAQ';
 import FinalCTA from '@/components/FinalCTA';
-import InlineLeadCapture from '@/components/InlineLeadCapture';
+import FounderStrip from '@/components/FounderStrip';
 
 export default function HomePage() {
   return (
@@ -16,8 +16,8 @@ export default function HomePage() {
       <TechStackScroll />
       <WhatIDo />
       <Stats />
+      <FounderStrip />
       <Comparison />
-      <InlineLeadCapture />
       <HowItWorks />
       <WhyMe />
       <FAQ />

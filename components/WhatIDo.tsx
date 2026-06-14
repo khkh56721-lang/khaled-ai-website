@@ -4,7 +4,7 @@ const items = [
   {
     title: 'AI Automation Systems',
     desc: 'Custom Make.com and n8n pipelines that connect your tools, enrich your data, and run your ops on autopilot — built around how your team actually works.',
-    stat: { value: '50+', label: 'hrs saved / month' },
+    stat: { value: '40+', label: 'hours saved / month' },
     tag: 'Workflows',
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="h-7 w-7">
@@ -39,27 +39,42 @@ const items = [
       </svg>
     ),
   },
+  {
+    title: 'AI Strategy & Consulting',
+    desc: 'Not sure where AI fits? I audit your workflows, find the highest-ROI automations, and hand you a clear roadmap — then you build it yourself or have me ship it for you.',
+    stat: { value: '30', label: 'min roadmap call' },
+    tag: 'Consulting',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-7 w-7">
+        <circle cx="24" cy="24" r="18" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="24" cy="24" r="9" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="24" cy="24" r="2.6" fill="currentColor" />
+      </svg>
+    ),
+  },
 ];
 
 export default function WhatIDo() {
   return (
     <section className="relative py-24 md:py-32">
       <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow mx-auto justify-center">What we build</p>
+        <div className="reveal-on-scroll mx-auto max-w-3xl text-center">
+          <p className="eyebrow mx-auto justify-center">What we do</p>
           <h2 className="heading-lg mt-4">
-            Three systems. All in production. <span className="text-accent">All revenue-driving.</span>
+            Four ways we drive <span className="text-gradient">real revenue.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-strong md:text-lg">
-            Each one designed for B2B teams that need to move faster than their stack lets them.
+            From the first strategy call to systems running in production — built for B2B teams
+            that need to move faster than their stack lets them.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:mt-20 md:grid-cols-3 md:gap-7">
-          {items.map((item) => (
+        <div className="mt-16 grid gap-6 md:mt-20 md:grid-cols-2 md:gap-7">
+          {items.map((item, i) => (
             <article
               key={item.title}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/80 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 md:p-10"
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="reveal-on-scroll group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/80 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 md:p-10"
             >
               {/* Accent glow that fades in on hover */}
               <div
@@ -84,13 +99,13 @@ export default function WhatIDo() {
                 {item.desc}
               </p>
 
-              {/* Stat strip */}
-              <div className="relative mt-8 flex items-baseline justify-between border-t border-border pt-6">
+              {/* Stat strip — animated count-up */}
+              <div className="relative mt-8 flex items-baseline justify-between gap-3 border-t border-border pt-6">
                 <AnimatedNumber
                   value={item.stat.value}
-                  className="text-4xl font-extrabold tracking-tight text-accent md:text-5xl"
+                  className="text-4xl font-extrabold tracking-tight text-gradient md:text-5xl"
                 />
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                <span className="text-right text-xs font-semibold uppercase tracking-wider text-muted">
                   {item.stat.label}
                 </span>
               </div>

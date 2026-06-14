@@ -12,7 +12,7 @@ export default function Footer() {
           <p className="mt-3 text-sm text-muted">
             Khaled Akhyarhoum · AI Automation Engineer
           </p>
-          <p className="mt-1 text-xs text-muted">La Rochelle, France → Global</p>
+          <p className="mt-1 text-xs text-muted">Building Globally</p>
         </div>
 
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-strong">
@@ -26,9 +26,8 @@ export default function Footer() {
             <Link href="/contact" className="hover:text-white">Contact</Link>
           </li>
           <li>
-            {/* TODO: replace with real YouTube channel URL once created */}
             <a
-              href="https://youtube.com/@khaled-ai"
+              href="https://www.youtube.com/@khaledakhyarhoum"
               target="_blank"
               rel="noreferrer"
               className="hover:text-white"
